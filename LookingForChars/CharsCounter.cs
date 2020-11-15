@@ -12,8 +12,30 @@ namespace LookingForChars
         /// <returns>The number of occurrences of all characters.</returns>
         public static int GetCharsCount(string str, char[] chars)
         {
-            // TODO #1. Implement the method using "for" statement.
-            throw new NotImplementedException();
+            // #1. Implement the method using "for" statement.
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+
+            var count = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                for (int j = 0; j < chars.Length; j++)
+                {
+                    if (str[i] == chars[j])
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            return count;
         }
 
         /// <summary>
@@ -26,8 +48,60 @@ namespace LookingForChars
         /// <returns>The number of occurrences of all characters within the specified range of elements in the <see cref="string"/>.</returns>
         public static int GetCharsCount(string str, char[] chars, int startIndex, int endIndex)
         {
-            // TODO #2. Implement the method using "while" statement.
-            throw new NotImplementedException();
+            // #2. Implement the method using "while" statement.
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+
+            if (startIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            if (endIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(endIndex));
+            }
+
+            if (startIndex > str.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            if (endIndex > str.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(endIndex));
+            }
+
+            if (startIndex > endIndex)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            var count = 0;
+            while (startIndex <= endIndex)
+            {
+                var arrayIndex = 0;
+                while (arrayIndex < chars.Length)
+                {
+                    if (str[startIndex] == chars[arrayIndex])
+                    {
+                        count++;
+                    }
+
+                    arrayIndex++;
+                }
+
+                startIndex++;
+            }
+
+            return count;
         }
 
         /// <summary>
@@ -41,8 +115,66 @@ namespace LookingForChars
         /// <returns>The limited number of occurrences of characters to search for within the specified range of elements in the <see cref="string"/>.</returns>
         public static int GetCharsCount(string str, char[] chars, int startIndex, int endIndex, int limit)
         {
-            // TODO #3. Implement the method using "do..while" statements.
-            throw new NotImplementedException();
+            // #3. Implement the method using "do..while" statements.
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+
+            if (startIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            if (endIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(endIndex));
+            }
+
+            if (startIndex > str.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            if (endIndex > str.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(endIndex));
+            }
+
+            if (startIndex > endIndex)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            if (limit < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(limit));
+            }
+
+            var count = 0;
+            do
+            {
+                var arrayIndex = 0;
+                do
+                {
+                    if (str[startIndex] == chars[arrayIndex])
+                    {
+                        count++;
+                    }
+
+                    arrayIndex++;
+                }
+                while (arrayIndex < chars.Length);
+                startIndex++;
+            }
+            while (startIndex <= endIndex && count < limit);
+
+            return count;
         }
     }
 }
